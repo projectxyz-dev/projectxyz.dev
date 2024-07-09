@@ -1,4 +1,4 @@
-# **[projectxyz.dev](projectxyz.dev)**
+# **[projectxyz.dev](https://projectxyz.dev)**
 
 > [!CAUTION]
 > Always make sure the page you are buying/downloading from is offical.<br>If you see a website isnt official, you may be dealing with a scam.
