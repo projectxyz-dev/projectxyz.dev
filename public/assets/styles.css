@@ -1,0 +1,203 @@
+/* project.xyz • 2024 
+       styles.css   
+       
+    Fonts used: 
+    Inter, Inter Tight, Clash Display
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@font-face {
+    font-family: "Clash Display";
+    src: url("fonts/ClashDisplay-Variable.ttf");
+}
+
+@keyframes gradient{
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+body, html {
+    height: 100%;
+    background:linear-gradient(90deg,black,rgb(9, 9, 9),black);
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: "Inter";
+    cursor: url("tts-cur.png"),auto;
+}
+.dark{
+    background-color: white;
+    color: black;   
+}
+h1,h2{
+    font-family: "Clash Display";
+
+}
+h1{
+    background: -webkit-linear-gradient(0deg,#ea00ff, #ff4bff,#f700ff,#00ffff,#00ff62,#00ffff,#f700ff,#ff4bff,#ea00ff);
+    background-size: 400%;
+    font-weight: 1000;
+    font-size: 350%;
+    animation-name: gradient;
+    animation-direction: normal;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-delay: unset;
+    animation-fill-mode: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-color: white;
+}
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    background-color: black;
+    position: relative; /* Ensure the context menu is positioned relative to this container */
+}
+
+.context-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #222;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-button:hover + .context-menu,
+.projects:hover .context-menu .context-menu:hover {
+    opacity: 1;
+    visibility: visible;
+}
+.menu-button:hover .context-menu,
+.menu-button:hover,
+.context-menu:hover {
+    opacity: 1;
+    visibility: visible;
+}
+
+.context-menu a {
+    display: block;
+    font-weight: 500;
+    font-family: "Clash Display";
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.context-menu a:hover {
+    background-color: #444;
+}
+.projects{
+    visibility: hidden;
+    display: none;
+    border-color: transparent;
+    border-style: solid;
+}
+.projects:hover + .projctx { opacity: 1; }
+.menu-button{
+    font-family: "Clash Display";
+    background: -webkit-linear-gradient(0deg,#ea00ff,#00ffff,#00ff62);
+    font-weight: 800;
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;   
+    animation-name: gradient;
+    animation-direction: normal;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-delay: unset;
+    animation-fill-mode: none; 
+}
+#glow {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle ,rgba(0, 255, 255, 0.1) , rgba(0,0,0,0) 50%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: background-color 0.2s ease;
+}
+.bg {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 2px, transparent 2px), linear-gradient(180deg, rgba(255, 255, 255, 0.1) 2px, transparent 2px);
+    background-size: 25px 25px;
+}
+::-webkit-scrollbar {
+    border-radius: 10px;
+    background:black;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background: #000000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #191919;
+    transition:500ms;
+    
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    transition:0.5s;
+    background: #171717;
+  }
+.logo{
+    padding:5px;
+}
+.email{
+    position: inherit;
+    translate: 0px 10px;
+}
+.button,.buttonalt{
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #000000;
+    padding:20px;
+    width: 250px;
+    margin:15px;
+    font-family: Clash Display;
+    font-weight: 700;
+    font-size: 100%;
+    color: rgb(255, 255, 255);
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+    cursor: pointer;
+    transition: 250ms ease;
+}
+.button:hover,.buttonalt:hover{
+    background-color: white;
+    color:black;
+}
+.buttonalt{
+    margin:5px;
+    margin-bottom: 30px;
+    width: 117.5px;
+}
+.footer {
+    
+    background-color: #0c0c0c;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: absolute;
+    bottom:0;
+}
