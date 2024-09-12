@@ -4,6 +4,7 @@
     Fonts used: 
     Inter, Inter Tight, Clash Display
 */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @font-face {
     font-family: "Clash Display";
@@ -18,6 +19,8 @@
         background-position: 100% 0;
     }
 }
+
+      
 body, html {
     height: 100%;
     background:linear-gradient(90deg,black,rgb(9, 9, 9),black);
@@ -36,17 +39,20 @@ h1,h2{
     font-family: "Clash Display";
 
 }
-h1{
-    background: -webkit-linear-gradient(0deg,#ea00ff, #ff4bff,#f700ff,#00ffff,#00ff62,#00ffff,#f700ff,#ff4bff,#ea00ff);
-    background-size: 400%;
-    font-weight: 1000;
-    font-size: 350%;
+.anim{
     animation-name: gradient;
     animation-direction: normal;
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-delay: unset;
     animation-fill-mode: none;
+}
+h1{
+    background: -webkit-linear-gradient(0deg,#ea00ff, #ff4bff,#f700ff,#00ffff,#00ff62,#00ffff,#f700ff,#ff4bff,#ea00ff);
+    background-size: 400%;
+    font-weight: 1000;
+    font-size: 350%;
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-color: white;
@@ -110,12 +116,6 @@ h1{
     background-size: 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;   
-    animation-name: gradient;
-    animation-direction: normal;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-delay: unset;
-    animation-fill-mode: none; 
 }
 #glow {
     position: fixed;
@@ -200,4 +200,43 @@ h1{
     width: 100%;
     position: absolute;
     bottom:0;
+}
+.empty_btn{
+    background-color: transparent;
+    border: none;
+    color: transparent;
+}
+.reduced-motion-text{
+    display: none;
+   
+}
+@media (prefers-reduced-motion) {
+    .anim{
+        animation-name: unset;
+
+        animation-duration: 1000s;
+    }
+    #glow{
+        background: transparent;
+    }
+    .reduced-motion-text{
+        display: block;
+    }
+    h1{
+        background: -webkit-linear-gradient(0deg,white,white);
+        background-size: 400%;
+        font-weight: 1000;
+        font-size: 350%;
+    
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .menu-button{
+        font-family: "Clash Display";
+        background: -webkit-linear-gradient(0deg,#ffffff,#fff, #fff);
+        font-weight: 800;
+        background-size: 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;   
+    }
 }
