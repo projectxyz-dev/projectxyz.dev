@@ -1,0 +1,295 @@
+<html>
+    <head>
+        <title>Through The Shadows</title>
+        <style>
+            :root {
+                --section-color: #141414;
+                background-color: black;
+                color: white;
+                font-family: "Inter";
+                text-align: center;
+            }
+
+            .bannerimg {
+                box-sizing: border-box;
+                border-style: solid;
+                border-color: black;
+                border-width: 10px;
+            }
+
+            .beta_badge {
+                background: linear-gradient(45deg, rgb(165, 17, 165), rgb(248, 44, 255));
+                font-size: 16px;
+                padding: 6px;
+                border-radius: 10px;
+                display: inline-block;
+                font-weight: 700;
+                vertical-align: middle;
+                position: relative;
+                cursor: pointer;
+            }
+
+            .tooltip {
+                position: absolute;
+                left: 50%;
+                font-weight: 300;
+                transform: translateX(-50%);
+                bottom: calc(100% + 10px); /* Slightly above the badge */
+                background-color: #333;
+                color: white;
+                padding: 8px;
+                border-radius: 6px;
+                white-space: nowrap;
+                font-size: 12px;
+                z-index: 10;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.3s ease, visibility 0.3s ease;
+                pointer-events: auto; /* Allows interaction with the tooltip */
+            }
+
+            .tooltip::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #333 transparent transparent transparent;
+                z-index: 10;
+            }
+            .download_btn{
+                border-radius: 20px;
+                border-width: 10px;
+                font-family: Inter;
+                color: white;
+                background-color: rgba(0,0,0,0);
+                font-weight: 700;
+                max-width: 250px;
+                margin: auto;
+                border:none;
+                cursor: pointer;
+            }
+            .beta_badge:hover .tooltip,
+            .beta_badge .tooltip:hover {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            h1 {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+            a {
+                color:rgb(172, 71, 255)
+            }
+            .early_access{
+                padding: 15px;
+                border-radius: 20px;
+                border-width: 10px;
+                background: linear-gradient(45deg, rgba(58, 0, 58, 0.418), rgba(202, 0, 209, 0.637));
+                max-width: 500px;
+                margin: auto;
+            }
+            .beta_badge_more{
+                
+                width: 100%;
+                font-size: 16px;
+                font-weight: 700;
+                padding: 6px;
+                border-radius: 10px;
+                display: inline-block;
+                vertical-align: middle;
+                position: relative;
+            }
+            .ver_badge{
+                background: linear-gradient(45deg, rgb(194, 194, 194), rgb(82, 81, 82));
+                font-size: 16px;
+                padding: 6px;
+                border-radius: 10px;
+                display: inline-block;
+                font-weight: 700;
+                vertical-align: middle;
+                position: relative;
+                cursor: pointer;          
+            }
+            .download_badge{
+                background: linear-gradient(45deg, rgb(98, 255, 0), rgb(0, 255, 128));
+                font-size: 16px;
+                padding: 6px;
+                border-radius: 10px;
+                display: inline-block;
+                font-weight: 700;
+                vertical-align: middle;
+                position: relative;
+                cursor: pointer;                      
+            }
+            li{
+                font-weight: 200;
+            }
+            p{
+                font-weight: 400;
+            }
+            .hashtag{
+                opacity: 0.6;
+                margin-right: 10px;
+            }
+            a,.no_col{
+                color:unset;
+
+            }
+            .news-section{
+                padding: 15px;
+                border-radius: 20px;
+                border-width: 10px;
+                background-color: var(--section-color);
+                max-width: 500px;
+                margin: 25px auto;
+                text-align: left;
+            }
+            h2{
+                text-align: center;
+            }
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+
+    <body>
+        <div class="banner">
+            <!-- <img class="bannerimg" src="assets/banner.png" width="100%" height="auto"> !-->
+        </div>
+
+        <div class="content"></div>
+            <h1>
+                <span class="beta_badge">EARLY ACCESS
+                    <div class="tooltip">You can play the game before its official release, but things won't go as planned. <a href="#early_access">More info</a></div>
+                </span>
+                <span class="ver_badge" id="ver_badge"></span>
+                Through The Shadows
+            </h1>
+        </div>
+        <div class="early_access" id="early_access">
+            <h2>
+                <span class="beta_badge_more"><a class="no_col" href="#early_access"><i class="fa-solid fa-hashtag hashtag" style="font-size: 1em; vertical-align: middle;"></i></a> EARLY ACCESS</span>
+            </h2>
+            <p>Through The Shadows is currently in early access, and there are a few things to know before you can play</p>
+            <ul>
+                <li>We're currently in beta testing, so there may be bugs, crashes, and other issues. We're also working on improving the game's performance and making it more enjoyable to play.</li>
+            </ul>
+            <p>Stay tuned for more updates and information about the game as it progresses.</p>
+        </div>
+        <div class="news-section" id="news-section">
+            <h2>Latest news</h2>
+            <!-- News items will be appended here by JavaScript -->
+        </div>
+
+        <div class="downloads news-section" id="downloads">
+            <h2>
+                <h2>Download</h2>
+            </h2>
+            
+        </div>
+
+    </body>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const apiUrl = "https://p-xyz.eu/api/download";
+    const versionList = document.getElementById('downloads');
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const versions = JSON.parse(data); 
+
+            
+            versions.forEach((version) => {
+                const listItem = document.createElement('li');
+
+                
+                const button = document.createElement('button');
+                button.textContent = `Download ${version.platform} - ${version.version}`;
+                button.setAttribute('onclick', `window.location.href='${version.url}'`);
+                button.classList.add('download_btn');
+                listItem.appendChild(button);
+                versionList.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching versions:', error);
+        });
+});
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const apiUrl = 'https://p-xyz.eu/api/notifications';
+    
+            
+            fetch(apiUrl)
+                
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const notifications = data.notifications;
+                    const newsSection = document.getElementById('news-section');
+    
+                    
+                    notifications.forEach(notification => {
+                        const newsItem = document.createElement('div');
+                        newsItem.className = 'news-item';
+    
+                        const title = document.createElement('h3');
+                        title.textContent = notification.title;
+    
+                        const description = document.createElement('p');
+                        description.textContent = notification.description;
+    
+                        newsItem.appendChild(title);
+                        newsItem.appendChild(description);
+    
+                        
+                        newsSection.appendChild(newsItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching the news:', error);
+                });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const apiUrl = 'https://p-xyz.eu/api/tts';
+    
+            
+            fetch(apiUrl)
+                
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const notifications = data.notifications;
+                    const badge = document.getElementById('ver_badge');
+                    badge.textContent = data.version;
+
+                })
+                .catch(error => {
+                    console.error('Error fetching the news:', error);
+                });
+        });
+    </script>
+    
+    
+</html>
