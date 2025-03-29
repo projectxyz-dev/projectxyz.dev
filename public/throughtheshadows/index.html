@@ -4,9 +4,9 @@
         <style>
             :root {
                 --section-color: #141414;
-                background-color: black;
                 color: white;
-                font-family: "Inter";
+                font-family: "Inter",Arial,sans-serif;
+                background: #0f0f0f linear-gradient(0deg, rgba(0,0,0,1) 50%, rgba(202,0,209,1) 100%);
                 text-align: center;
             }
 
@@ -58,6 +58,17 @@
                 border-style: solid;
                 border-color: #333 transparent transparent transparent;
                 z-index: 10;
+            }
+            .button-platform{
+                border-radius: 20px;
+                border-width: 10px;
+                font-family: Inter;
+                color: white;
+                background-color: rgba(0,0,0,0);
+                font-weight: 700;
+                max-width: 250px;
+                margin: auto;
+                border:none;
             }
             .download_btn{
                 border-radius: 20px;
@@ -142,6 +153,33 @@
                 color:unset;
 
             }
+            #platforms {
+                 justify-content: center; /* Ensures content is centered horizontally */
+                 align-items: center; /* Ensures vertical alignment */
+                 display: flex;
+                 flex-direction: row;
+                 flex-wrap: wrap;
+                 gap: 10px;
+                 margin: auto;
+                 margin-top: 10px;
+                 margin-bottom: 10px;
+                 max-width: 500px;
+                 text-align: center; /* Centers block text */
+             }
+            .disabled_download{
+                text-align: center;
+                border-radius: 20px;
+                border-width: 10px;
+                font-family: Inter;
+                color: white;
+                background-color: rgba(0,0,0,0);
+                font-weight: 700;
+                max-width: 250px;
+                margin: auto;
+                border:none;
+                cursor: pointer;
+            }
+
             .news-section{
                 padding: 15px;
                 border-radius: 20px;
@@ -191,88 +229,114 @@
         </div>
 
         <div class="downloads news-section" id="downloads">
-            <h2>
-                <h2>Download</h2>
-            </h2>
-            
+            <h2>Download</h2>
+            <h3 style="text-align: center">Please select your platform</h3>
+            <div id="platforms">
+                <button class="button-platform" id="windows" onclick="switchPlatform('win64')">Windows (64bit)</button>
+                <button class="button-platform" id="windows32" onclick="switchPlatform('win32')">Windows (32bit)</button>
+                <button class="button-platform" id="linux" onclick="switchPlatform('linux')">Linux</button>
+            </div>
+
+
         </div>
 
     </body>
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const apiUrl = "https://api.projectxyz.dev/downloads";
-    const versionList = document.getElementById('downloads');
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const versions = data; 
-
-            
-            versions.forEach((version) => {
-                const listItem = document.createElement('li');
-
-                
-                const button = document.createElement('button');
-                button.textContent = `Download ${version.platform} - ${version.version}`;
-                button.setAttribute('onclick', `window.location.href='${version.url}'`);
-                button.classList.add('download_btn');
-                listItem.appendChild(button);
-                versionList.appendChild(listItem);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching versions:', error);
-        });
-});
-
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            const apiUrl = 'https://api.projectxyz.dev/notifications';
-    
-            
+        let selectedPlatform = "win64"
+        function switchPlatform(platform) {
+            selectedPlatform = platform;
+            console.log("tried to switch to " + selectedPlatform)
+            loadDownloads()
+        }
+        function loadDownloads(){
+            const apiUrl = "https://api.projectxyz.dev/downloads";
+            const versionList = document.getElementById('downloads');
             fetch(apiUrl)
-                
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    const notifications = data.notifications;
-                    const newsSection = document.getElementById('news-section');
-    
-                    
-                    notifications.forEach(notification => {
-                        const newsItem = document.createElement('div');
-                        newsItem.className = 'news-item';
-    
-                        const title = document.createElement('h3');
-                        title.textContent = notification.title;
-    
-                        const description = document.createElement('p');
-                        description.textContent = notification.description;
-    
-                        newsItem.appendChild(title);
-                        newsItem.appendChild(description);
-    
-                        
-                        newsSection.appendChild(newsItem);
+                    const versions = data;
+
+                    const children = versionList.querySelectorAll('.download_btn');
+                    children.forEach(child => {
+                        const parent = child.parentElement; // Get the parent (e.g., <li>)
+                        if (parent) {
+                            parent.remove(); // Remove the parent <li> containing the child button
+                        }
                     });
+                    let hasReleases = false; // Track if there are any releases
+
+                    versions.forEach((version) => {
+                        if (version.platform === selectedPlatform) { // Only proceed for the selected platform
+                            hasReleases = true; // Found at least one release
+
+                            // Create the list item
+                            const listItem = document.createElement('li');
+
+                            // Create the download button
+                            const button = document.createElement('button');
+                            button.textContent = `Download ${version.platform} - ${version.version}`;
+                            button.setAttribute('onclick', `window.location.href='${version.url}'`);
+                            button.classList.add('download_btn');
+
+                            // Append the button to the list item
+                            listItem.appendChild(button);
+
+                            // Append the list item to the version list
+                            versionList.appendChild(listItem);
+                        }
+                    });
+
+// Check if no releases were found
+                    if (!hasReleases) {
+                        const noReleasesButton = document.createElement('button');
+                        noReleasesButton.textContent = "There aren't any releases for this platform.";
+                        noReleasesButton.disabled = true; // Disable the button since it's informational only
+                        noReleasesButton.classList.add('download_btn'); // Optional: Add a class for styling
+
+                        versionList.appendChild(noReleasesButton); // Append to the version list
+                    }
                 })
-                .catch(error => {
-                    console.error('Error fetching the news:', error);
-                });
-        });
+        }
+        document.addEventListener('DOMContentLoaded', () => loadDownloads())
+
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            const apiUrl = 'https://api.projectxyz.dev/throughtheshadows';
-    
-            
+        function getRelativeTime(timestamp) {
+            const now = Math.floor(Date.now() / 1000); // Get current time in seconds
+            const diff = now - timestamp;
+
+            if (diff < 60) return `${diff} second${diff === 1 ? "" : "s"} ago`;
+            if (diff < 3600) {
+                const minutes = Math.floor(diff / 60);
+                return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+            }
+            if (diff < 86400) {
+                const hours = Math.floor(diff / 3600);
+                return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+            }
+            if (diff < 2592000) {
+                const days = Math.floor(diff / 86400);
+                return `${days} day${days === 1 ? "" : "s"} ago`;
+            }
+            if (diff < 31536000) {
+                const months = Math.floor(diff / 2592000);
+                return `${months} month${months === 1 ? "" : "s"} ago`;
+            }
+
+            const years = Math.floor(diff / 31536000);
+            return `${years} year${years === 1 ? "" : "s"} ago`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiUrl = 'https://api.projectxyz.dev/notifications';
+            const newsSection = document.getElementById('news-section');
+
+            if (!newsSection) {
+                console.error("Error: Element with id 'news-section' not found!");
+                return;
+            }
+
             fetch(apiUrl)
-                
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -280,10 +344,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     return response.json();
                 })
                 .then(data => {
-                    const notifications = data.notifications;
-                    const badge = document.getElementById('ver_badge');
-                    badge.textContent = data.version;
+                    console.log('API Response:', data); // Debugging step
+                    try {
+                        const notifications = data.notifications;
 
+                        if (!notifications || !Array.isArray(notifications)) {
+                            throw new Error('Invalid or missing "notifications" array');
+                        }
+
+                        if (notifications.length === 0) {
+                            const noNewsMessage = document.createElement('p');
+                            noNewsMessage.textContent = 'No news at the moment.';
+                            newsSection.appendChild(noNewsMessage);
+                            return;
+                        }
+
+                        notifications.forEach(notification => {
+                            const newsItem = document.createElement('div');
+                            newsItem.className = 'news-item';
+                            const title = document.createElement('h3');
+                            title.textContent = notification.title;
+                            const description = document.createElement('p');
+                            var timestamp = getRelativeTime(notification.timestamp);
+                            description.textContent = notification.description + ` ~${timestamp}`;
+                            newsItem.appendChild(title);
+                            newsItem.appendChild(description);
+
+                            newsSection.appendChild(newsItem);
+                        });
+                    } catch (error) {
+                        console.error('Error processing notifications:', error);
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching the news:', error);

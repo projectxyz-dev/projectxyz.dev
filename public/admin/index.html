@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>project.xyz admin</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<script src="assets/script.js"></script>
+<body>
+    <div id="login" class="login">
+            <input type="password" id="token" name="password" placeholder="token">
+            <button id="login-btn">login</button>
+    </div>
+    <div id="content" class="content hidden">
+        <h1>project.xyz admin</h1>
+        <p id="wb">welcome back, </p>
+        click <a onclick="logout()" href=".">here</a> to log out
+        <div id="containers" class="containers">
+            <div id="manage" class="container hidden">
+                <h2>Manage users</h2>
+                <button onclick="fetchUsers()">Load</button>
+                <button onclick="createNewUserDialog()">Create New</button>
+                <div id="users">
+
+                </div>
+            </div>
+            <div id="notifications" class="container hidden">
+                <h2>Notifications</h2>
+                <button onclick="newNotificationDialog()">Create new</button>
+                <div id="notifications-list"></div>
+            </div>
+        </div>
+        <div id="createUserDialog" class="container hidden">
+            <h2>Create new user</h2>
+            <input type="text" id="newUserUsername" placeholder="username">
+            <input type="number" id="newUserPermissions" placeholder="permissions">
+            <h3>A token for this user will be generated automatically.</h3>
+            <button onclick="createUser()">Create</button>
+        </div>
+        <div id="createNotification" class="container hidden">
+            <h2>Create new user</h2>
+            <input type="text" id="newNotificationTitle" placeholder="title">
+            <input type="text" id="newNotificationDescription" placeholder="description">
+            <h3>A timestamp will be created automatically</h3>
+            <button onclick="createNotification()">Post</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

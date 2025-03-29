@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root{
+    --text-color: white;
+    --text-font: "Clash Display", "sans-serif";
+    --background-color: #131313;
+    --container-color: #1e1e1e;
+    --button-color: #3c3c3c;
+    margin: 6px;
+}
+h1{
+    font-family: "Clash Display", "sans-serif";
+    margin: 3px;
+}
+.containers{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+}
+input{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--button-color);
+    color: white;
+    font-family: "Clash Display", var(--text-font), sans-serif;
+}
+button{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--button-color);
+    color: white;
+    font-family: "Clash Display", var(--text-font), sans-serif;
+
+}
+input::placeholder{
+    color: gray;
+    font-style:italic;
+}
+@font-face {
+    font-family: "Clash Display";
+    src: url("../../assets/fonts/ClashDisplay-Variable.ttf");
+}
+a{
+    color: #7e7e7e;
+}
+body{
+    background-color: var(--background-color);
+    font-family: var(--text-font), sans-serif;
+    color: var(--text-color);
+    text-align: center;
+
+}
+h2{
+    vertical-align: top;
+}
+.content{
+    transition: opacity 0.3s ease;
+    display: block;
+    opacity: 1;
+}
+code{
+    background-color: var(#0b0b0b);
+}
+.hidden{
+    opacity: 0;
+    display: none;
+    transition: opacity 0.3s ease;
+}
+.container{
+    background-color: var(--container-color);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    min-height: 600px;
+    width: 600px;
+}
+#users{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
