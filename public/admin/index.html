@@ -7,7 +7,7 @@
 <script src="assets/script.js"></script>
 <body>
     <div id="login" class="login">
-            <input type="password" id="token" name="password" placeholder="token">
+            <input type="password" id="token" name="password" placeholder="token" onkeydown="if(event.key === 'Enter') { document.getElementById('login-btn').click(); }">
             <button id="login-btn">login</button>
     </div>
     <div id="content" class="content hidden">

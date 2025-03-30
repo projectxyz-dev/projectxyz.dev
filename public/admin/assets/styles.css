@@ -81,8 +81,15 @@ code{
 #users{
     display: flex;
     flex-direction: row;
+    margin: 10px;
+    gap: 50px;
     align-items: center;
     justify-content: center;
+}
+.user-info{
+    background-color: #292929;
+    padding: 15px;
+    border-radius: 10px;
 }
 .login{
     position: absolute;

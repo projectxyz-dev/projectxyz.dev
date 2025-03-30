@@ -1,8 +1,8 @@
-/* project.xyz • 2024 
+/* project.xyz • 2024/2025
        styles.css   
        
     Fonts used: 
-    Inter, Inter Tight, Clash Display
+    Inter, Inter Tight, Clash Display, more...
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
@@ -20,7 +20,9 @@
     }
 }
 
-
+a{
+    text-decoration: none;
+}
 body, html {
     height: 100%;
     background: #0f0f0f;
@@ -71,20 +73,22 @@ h1{
     align-items: center;
     height: 50px;
     background-color: black;
-    position: relative; /* Ensure the context menu is positioned relative to this container */
+    position: relative;
 }
-
 .context-menu {
-    background-color: #1d1d1d;
     position: absolute;
-    top: 100%;
-    right: 0;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background-color: #1d1d1d;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    width: 300px;
 }
+
 
 .menu-button:hover + .context-menu,
 .projects:hover .context-menu .context-menu:hover {
@@ -113,6 +117,8 @@ h1{
 .projects{
     border-color: transparent;
     border-style: solid;
+    position: relative;
+    display: inline-block;
 }
 .projects:hover + .projctx { opacity: 1; }
 .menu-button{
@@ -192,8 +198,11 @@ h1{
     transition: 250ms ease;
 }
 .button:hover,.buttonalt:hover{
-    background-color: white;
-    color:black;
+    background-color: #ffffff;
+    color: #000;
+    background-clip: padding-box;
+    transition: 300ms;
+    border-radius: 15px;
 }
 .buttonalt{
     margin:5px;
@@ -248,4 +257,29 @@ h1{
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;   
     }
+}
+.project-btn {
+    position: relative;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: #1d1d1d;
+    color: white;
+    font-weight: bold;
+    font-family: "Clash Display", sans-serif;
+    border: 0px solid transparent;
+    background-clip: padding-box;
+}
+
+.project-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 3px;
+    background: linear-gradient(90deg, #ff00c8, #f700ff, #c000ff, #c300ff);
+    -webkit-mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+    mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
