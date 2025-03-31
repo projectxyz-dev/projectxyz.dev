@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- alex aew xli xmxpi sj xli jmvwx xvego ehhih sr pcvB? -->
+ <!-- Throughout history, some secrets were kept with a simple shift.
+The key lies in the number 4 — a number of stability, yet it’s not what it seems.
+Look at the letters again, and think of an empire that used this method to protect its messages.
+The pattern is simple, but the shift will unlock it. Focus on four, and let the letters move. -->
+<html>
+    <head>
+        <title>password input.</title>
+    </head>
+    <style>
+        :root{
+            background-color: rgb(3, 0, 0);
+            text-align: center;
+        }
+        input{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: white;
+            background-color: rgb(12, 0, 0);
+            border: white solid 2px;
+            border-radius: 10px;
+            height: 50px;
+            min-width: 2px;
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+    <body>
+        <input id="password">
+    </body>
+    <script>
+    console.log("woah, how did you get that far...\nwelp, thats the final page... right?")
+    
+    document.getElementById('password').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const query = encodeURIComponent(this.value);
+            let pass = "98147691878"
+            fetch(`https://api.projectxyz.dev/arg/password?q=${query}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data.content);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+            this.value = ""
+        }
+        
+    });
+    </script>
+</html>
